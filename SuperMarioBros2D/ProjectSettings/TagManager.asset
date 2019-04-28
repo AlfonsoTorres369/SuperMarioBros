@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Platform
+  - Bonus Box
+  - Mushroom
+  - Flower
+  - Coin
+  - Star
+  - Wumpa
+  - Turtle
+  - Shell
+  - CarnivorousPlant
   layers:
   - Default
   - TransparentFX
