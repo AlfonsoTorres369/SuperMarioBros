@@ -49,6 +49,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2464662189
+    locked: 0
+  - name: Clouds
+    uniqueID: 1791849713
+    locked: 0
+  - name: TitleScreen
+    uniqueID: 2399846085
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
