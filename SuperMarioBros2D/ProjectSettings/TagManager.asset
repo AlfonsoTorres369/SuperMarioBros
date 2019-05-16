@@ -17,6 +17,8 @@ TagManager:
   - Mario
   - Obstacle
   - MarioFoots
+  - Top
+  - Bottom
   layers:
   - Default
   - TransparentFX

@@ -17,7 +17,6 @@ public class Mario : MonoBehaviour
 
     public int health = 1;
     public bool direction;
-    public CameraFollow Camera;
 
     void Start(){
 
@@ -64,12 +63,12 @@ public class Mario : MonoBehaviour
             if (moveX > 0f)
             {
                 direction = true;
-                Camera.cameraFollowX = true;
+                
             }
             else {
                 Debug.Log("Hola");
                 direction = false;
-                Camera.cameraFollowX = false;
+                
             }
         }
         flip(moveX);
