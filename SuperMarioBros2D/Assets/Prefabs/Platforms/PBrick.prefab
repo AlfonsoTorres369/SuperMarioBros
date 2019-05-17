@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1534546666948163060}
   - component: {fileID: 2746270316491527143}
   - component: {fileID: 7719074433474911102}
+  - component: {fileID: 284746010090004124}
   m_Layer: 0
-  m_Name: platforms_2
-  m_TagString: Untagged
+  m_Name: PBrick
+  m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3266427535150778848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5276384, y: -1.4838423, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,3 +108,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.61538464, y: 0.61538464}
   m_EdgeRadius: 0
+--- !u!95 &284746010090004124
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3266427535150778848}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e47f340d6c695e44dac7ca25c7d73e20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

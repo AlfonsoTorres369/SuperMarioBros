@@ -10,7 +10,7 @@ public class Goomba : MonoBehaviour
 
 
     public int direction = -1;
-    public float speed = 20f;
+    public float speed = 2f;
     public Mario mario;
 
     void Start()
@@ -43,7 +43,7 @@ public class Goomba : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Mario")
+        if (collision.gameObject.tag == "MarioFoots")
         {
             dead();
         }

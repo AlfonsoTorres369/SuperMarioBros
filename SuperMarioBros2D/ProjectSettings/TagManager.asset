@@ -19,6 +19,8 @@ TagManager:
   - MarioFoots
   - Top
   - Bottom
+  - Brick
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -28,11 +30,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Mario
+  - Mushroom
+  - Flower
+  - Goomba
+  - Turtle
   - 
   - 
   - 

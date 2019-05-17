@@ -103,26 +103,6 @@ public class Mario : MonoBehaviour
         }
     }
 
-    void OnCollisionExit2D(Collision2D c)
-    {
-
-        if (c.gameObject.tag == "Ground")
-        {
-
-            grounded = false;
-        }
-    }
-
-    void OnCollisionStay2D(Collision2D c)
-    {
-
-        if (c.gameObject.tag == "Ground")
-        {
-            grounded = true;
-        }
-
-    }
-
     public void seta() {
 
         if (health < 2)
@@ -135,6 +115,26 @@ public class Mario : MonoBehaviour
 
     public void hit() {
         health--;
+
+    }
+
+    void OnTriggerExit2D(Collider2D c)
+    {
+
+        if (c.gameObject.tag == "Platform" ||c.gameObject.tag == "Ground")
+        {
+
+            grounded = false;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D c)
+    {
+
+        if (c.gameObject.tag == "Platform" || c.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
 
     }
    

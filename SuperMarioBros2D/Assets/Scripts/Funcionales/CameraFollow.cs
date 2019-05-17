@@ -5,7 +5,6 @@ using System;
 
 public class CameraFollow : MonoBehaviour {
 
-    //offset from the viewport center to fix damping
     public GameObject player;
     public bool allowMovement;
     
@@ -18,6 +17,9 @@ public class CameraFollow : MonoBehaviour {
     void Update() 
     {
         float direction = Input.GetAxis("Horizontal");
+        //Función que mira si la x de mario es mayor que la x de la cámara. Cambiará el valor de allowMovement.
+        allowMovement = CheckDistance();
+        //Si la x de Mario es mayor o igual que la x de la cámara, la cámara se moverá con mario.
        if(allowMovement && direction>=0)
        {
            Vector3 move = new Vector3(player.transform.position.x, transform.position.y, transform.position.z);
@@ -25,15 +27,18 @@ public class CameraFollow : MonoBehaviour {
        }
     }
 
-    void OnTriggerStay2D(Collider2D c)
+    bool CheckDistance()
     {
-        if(c.gameObject.CompareTag("Mario"))
+        bool resul = false;
+
+        if(player.transform.position.x>=transform.position.x)
         {
-            allowMovement = true;
+            resul = true;
         }
-    }
-    void OnTriggerExit2D(Collider2D c)
-    {
-        allowMovement = false;
+        else if(player.transform.position.x<transform.position.x)
+        {
+            resul = false;
+        }
+        return resul;
     }
 }

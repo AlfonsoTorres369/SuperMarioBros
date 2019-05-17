@@ -8,6 +8,12 @@ public class Flor : MonoBehaviour
     public float yfinal;
     public bool changed = false;
     public bool movcompleto = false;
+    private GameObject scoreboard;
+
+    void Start()
+    {
+        scoreboard = GameObject.Find("Canvas");
+    }
     
     void Update()
     {
@@ -28,7 +34,7 @@ public class Flor : MonoBehaviour
         {
             if (collision.gameObject.tag == "Mario")
             {
-                changePoints(1000);
+                scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 1000;
                 Destroy(gameObject);
 
             }
