@@ -10,7 +10,7 @@ public class Mario : MonoBehaviour
     SpriteRenderer s;
 
     public float moveX;
-    public float Speed = 10f;
+    public float Speed = 12f;
     public float jumpPower = 10f;
     public bool facingRight;
     public bool grounded = true;

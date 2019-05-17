@@ -27,7 +27,7 @@ public class CoinBox : MonoBehaviour
         {
             if(transform.position.y > yinicial)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 0.05f, 1f);
+                transform.position = new Vector3(transform.position.x, transform.position.y - 0.12f, 1f);
             }   
             else
             {
@@ -38,7 +38,7 @@ public class CoinBox : MonoBehaviour
         else
         {
              if (transform.position.y < yfinal)
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f, 1f);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.07f, 1f);
         else 
         {
             movcompleto = true;

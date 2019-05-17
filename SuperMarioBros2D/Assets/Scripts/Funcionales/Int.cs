@@ -16,7 +16,7 @@ public class Int : MonoBehaviour
     {
         animation = GetComponent<Animator>();
     }
-    private void OnCollisionEnter2D(Collision2D c)
+    private void OnTriggerEnter2D(Collider2D c)
     {
         if (c.gameObject.tag == "Mario")
         {

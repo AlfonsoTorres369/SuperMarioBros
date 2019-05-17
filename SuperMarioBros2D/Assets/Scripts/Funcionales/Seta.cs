@@ -13,6 +13,7 @@ public class Seta : MonoBehaviour
     private bool changed = false;
     private GameObject scoreboard;
     private bool picked;
+
     void Start()
     {
 
@@ -48,13 +49,5 @@ public class Seta : MonoBehaviour
         }
     }
 
-    void OnBecameInvisible()
-    {
-        /* if(transform.position.x < mario.transform.position.x)
-        {
-            Destroy(gameObject);
-        }*/
-        enabled = true;
-        Destroy(gameObject);
-    }
+   
 }
