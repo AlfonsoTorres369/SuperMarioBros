@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6621486309094228752}
   - component: {fileID: 4664679801976332996}
   - component: {fileID: 3856829792333436527}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: TurtleCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2088519300899329388}
   - component: {fileID: 4586031437975214844}
   - component: {fileID: 8383289956796826381}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Turtle
   m_TagString: Turtle
   m_Icon: {fileID: 0}

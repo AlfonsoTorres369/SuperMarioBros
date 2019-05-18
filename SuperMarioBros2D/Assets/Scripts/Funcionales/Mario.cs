@@ -27,6 +27,7 @@ public class Mario : MonoBehaviour
     private float LastHit;
     private bool win;
     private bool scoreRec;
+    private GameObject gameover;
 
 
 
@@ -40,6 +41,7 @@ public class Mario : MonoBehaviour
         s = gameObject.GetComponent<SpriteRenderer>();
         sound = GetComponent<AudioSource>();
         win = false;
+        gameover = GameObject.Find("Score&SceneController");
 
     }
 
@@ -148,6 +150,7 @@ public class Mario : MonoBehaviour
                 a.SetBool("Dead", true);
                 health--;
                 sound.PlayOneShot(Dead, 1f);
+                gameover.GetComponent<GameOver>().LoadNewScene();
                 //Destroy(gameObject);
             }
             if(health == 2)

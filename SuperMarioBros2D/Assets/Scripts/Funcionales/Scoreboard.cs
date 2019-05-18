@@ -15,10 +15,7 @@ public class Scoreboard : MonoBehaviour
     private GameObject ScoreUI;
     void Start()
     {
-        Coins = 0;
-        Lives = 3;
         Time = 300;
-        Score = 0;
         //Seleccionamos los hijos del canvas para poder acceder a sus campos de texto.
         CoinsUI = transform.GetChild(1).gameObject;
         LivesUI = transform.GetChild(4).gameObject;

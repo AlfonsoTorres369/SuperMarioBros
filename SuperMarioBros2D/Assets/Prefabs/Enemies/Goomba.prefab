@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4982840753022066636}
   - component: {fileID: 5006274490808848526}
   - component: {fileID: 6332208110656838151}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Goomba
   m_TagString: Wumpa
   m_Icon: {fileID: 0}
