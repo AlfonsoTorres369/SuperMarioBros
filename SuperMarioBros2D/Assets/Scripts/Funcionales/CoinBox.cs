@@ -8,13 +8,17 @@ public class CoinBox : MonoBehaviour
     private bool movcompleto;
     private float yinicial;
     private GameObject scoreboard;
+    private AudioSource sound;
+
     // Start is called before the first frame update
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         movcompleto = false;
         yfinal = transform.position.y +2f;
         yinicial = transform.position.y;
         scoreboard = GameObject.Find("Canvas");
+        sound.Play();
         scoreboard.GetComponent<Scoreboard>().Coins++;
         scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 200;
     }

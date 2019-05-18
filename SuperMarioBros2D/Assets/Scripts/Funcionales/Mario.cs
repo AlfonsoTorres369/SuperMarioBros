@@ -8,6 +8,7 @@ public class Mario : MonoBehaviour
     private Rigidbody2D r;
     private Animator a;
     SpriteRenderer s;
+    private GameObject scoreboard;
 
     public float moveX;
     public float Speed = 12f;
@@ -17,21 +18,44 @@ public class Mario : MonoBehaviour
 
     public int health = 1;
     public bool direction;
+    public AudioClip Mushroom;
+    public AudioClip Coin;
+    public AudioClip Dead;
+    public AudioClip Flag;
+    public AudioClip Jump;
+    private AudioSource sound;
+    private float LastHit;
+    private bool win;
+    private bool scoreRec;
+
+
 
     void Start(){
 
+        scoreRec = false;
+        LastHit = 0f;
+        scoreboard = GameObject.Find("Canvas");
         r = gameObject.GetComponent<Rigidbody2D>();
         a = gameObject.GetComponent<Animator>();
         s = gameObject.GetComponent<SpriteRenderer>();
+        sound = GetComponent<AudioSource>();
+        win = false;
 
     }
 
     
     void Update(){
 
-        marioMovement();
-        jump();
-        fireCast();
+        if(!win)
+        {
+            marioMovement();
+            jump();
+            fireCast();
+        }
+        if(win && transform.position.y<-1.7)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+        }
 
     }
     public GameObject fire;
@@ -83,6 +107,7 @@ public class Mario : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space)){
             if (grounded) {
 
+                sound.PlayOneShot(Jump, 1f);
                 r.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
             }
@@ -105,19 +130,40 @@ public class Mario : MonoBehaviour
 
     public void seta() {
 
-        if (health < 2)
+        sound.PlayOneShot(Mushroom, 1f);
+        if (health == 1)
         {
             //animacion mario grande
+            a.SetBool("SuperMario", true);
             health++;
         }
         
     }
 
     public void hit() {
-        health--;
+        if(Time.time - LastHit >= 1f)
+        {
+                if(health == 1)
+            {
+                a.SetBool("Dead", true);
+                health--;
+                sound.PlayOneShot(Dead, 1f);
+                //Destroy(gameObject);
+            }
+            if(health == 2)
+            {
+                health--;
+                a.SetBool("SuperMario", false);
+            }
+            LastHit = Time.time;
+        }
 
     }
 
+    public void PlayCoinSound()
+    {
+        sound.PlayOneShot(Coin, 1f);
+    }
     void OnTriggerExit2D(Collider2D c)
     {
 
@@ -136,6 +182,18 @@ public class Mario : MonoBehaviour
             grounded = true;
         }
 
+    }
+
+    void OnCollisionEnter2D(Collision2D c)
+    {
+        if(c.gameObject.tag == "Flag" && !scoreRec)
+        {
+            win = true;
+            sound.PlayOneShot(Flag, 1f);
+            a.SetBool("Win", true);
+            scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 400;
+            scoreRec = true;
+        }
     }
    
    }

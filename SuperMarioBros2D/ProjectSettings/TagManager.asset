@@ -21,6 +21,7 @@ TagManager:
   - Bottom
   - Brick
   - Ground
+  - Flag
   layers:
   - Default
   - TransparentFX

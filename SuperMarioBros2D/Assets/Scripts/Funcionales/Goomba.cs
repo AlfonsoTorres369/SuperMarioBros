@@ -11,12 +11,13 @@ public class Goomba : MonoBehaviour
 
     public int direction = -1;
     public float speed = 2f;
-    public Mario mario;
+    public GameObject mario;
 
     void Start()
     {
         r = GetComponent<Rigidbody2D>();
         a = GetComponent<Animator>();
+        mario = GameObject.FindWithTag("Mario");
 
     }
 
@@ -32,7 +33,7 @@ public class Goomba : MonoBehaviour
     {
         if (collision.gameObject.tag == "Mario")
         {
-            mario.hit();
+            mario.GetComponent<Mario>().hit();
         }
 
 

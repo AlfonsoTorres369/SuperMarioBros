@@ -9,7 +9,6 @@ public class Seta : MonoBehaviour
     public GameObject mario;
     public int direction = -1;
     public float speed = 20f;
-    //public ScoreBoard s;
     private bool changed = false;
     private GameObject scoreboard;
     private bool picked;
@@ -42,9 +41,9 @@ public class Seta : MonoBehaviour
         if (collision.gameObject.tag == "Mario" &&!picked)
         {
             picked = true;
-           //mario.seta();
-           scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 1000;
-           Destroy(gameObject);
+            mario.GetComponent<Mario>().seta();
+            scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 1000;
+            Destroy(gameObject);
 
         }
     }

@@ -9,11 +9,13 @@ public class CarnivorousPlant : MonoBehaviour
     private int direction;
     private float initialPosition;
     public float finalPosition;
+    private GameObject mario;
     void Start()
     {
         direction = 1;
         initialPosition = transform.position.y;
         rb = GetComponent<Rigidbody2D>();
+        mario = GameObject.FindWithTag("Mario");
     }
 
     void Update()
@@ -33,7 +35,7 @@ public class CarnivorousPlant : MonoBehaviour
     {
         if(c.gameObject.CompareTag("Mario"))
         {
-            Destroy(c.gameObject);
+            mario.GetComponent<Mario>().hit();
         }
     }
 

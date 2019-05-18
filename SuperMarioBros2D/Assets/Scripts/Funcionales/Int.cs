@@ -11,9 +11,12 @@ public class Int : MonoBehaviour
     public GameObject coin;
     private bool spawned = false;
     private Animator animation;
+    public AudioClip Appear;
+    private AudioSource sound;
 
     void Start()
     {
+        sound = GetComponent<AudioSource>();
         animation = GetComponent<Animator>();
     }
     private void OnTriggerEnter2D(Collider2D c)
@@ -34,11 +37,13 @@ public class Int : MonoBehaviour
                 {
                     animation.SetBool("Hitted", true);
                     //animacion de bloque
+                    sound.PlayOneShot(Appear, 1f);
                     Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.9f, transform.position.z), Quaternion.identity);
                     
                 }
                 if (tipo == "Flower") {
                     animation.SetBool("Hitted", true);
+                    sound.PlayOneShot(Appear, 1f);
                     Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
                     flor.GetComponent<Flor>().getpos(transform.position.y + 0.556f);
                 }
