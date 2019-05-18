@@ -39,7 +39,7 @@ public class Turtle : MonoBehaviour
     {
         if (!dead)
         {
-            flip();
+            
             r.velocity = new Vector2(direction * speed, r.velocity.y);
         }
 

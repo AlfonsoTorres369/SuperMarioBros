@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2657898393858130457}
   - component: {fileID: 244819498689635661}
   - component: {fileID: 2088519300899329388}
+  - component: {fileID: 4586031437975214844}
   m_Layer: 0
   m_Name: Turtle
   m_TagString: Turtle
@@ -132,10 +133,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: -1
-  speed: 20
-  mario: {fileID: 0}
+  speed: 2
+  mario: {fileID: 6030950826198739067, guid: 39e4f028a2ca4ee48884424129c258dc, type: 3}
   change1: 0
-  change2: 0
+  change2: 1
+--- !u!50 &4586031437975214844
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709836820539664659}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 100
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &9033625828970812024
 GameObject:
   m_ObjectHideFlags: 0

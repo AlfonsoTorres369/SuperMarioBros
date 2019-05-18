@@ -85,7 +85,6 @@ public class MovingPlatform : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Deberia funcionar");
         other.transform.parent = transform;
     }
 
