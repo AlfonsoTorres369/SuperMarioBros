@@ -60,7 +60,7 @@ public class MovingPlatform : MonoBehaviour
         else {
             if (!vuelta)
             {
-                if (transform.position.x < finalP)
+                if (transform.position.y < finalP)
                 {
                     gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + velocidad);
                 }
@@ -71,7 +71,7 @@ public class MovingPlatform : MonoBehaviour
             }
             else
             {
-                if (transform.position.x > initP)
+                if (transform.position.y > initP)
                 {
                     gameObject.transform.position = new Vector2(transform.position.x , transform.position.y - velocidad);
                 }
