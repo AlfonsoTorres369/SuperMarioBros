@@ -8,11 +8,11 @@ public class Turtle : MonoBehaviour
     private Rigidbody2D r;
     private Animator a;
     private SpriteRenderer s;
-    private bool deadcollision = false;
+    public bool deadcollision = false;
     public int direction = -1;
     public float speed = 20f;
     public Mario mario;
-    private bool dead = false;
+    public bool dead = false;
 
     public bool change1 = false;
     public bool change2 = false;
@@ -27,16 +27,18 @@ public class Turtle : MonoBehaviour
     {
         if (r.velocity.x > 0f)
         {
-            s.flipX = false;
+            
+            s.flipX = true;
         }
         if (r.velocity.x < 0f)
         {
-            s.flipX = true;
+            s.flipX = false;
         }
     }
 
     void Update()
     {
+        flip();
         if (!dead)
         {
             
@@ -47,108 +49,84 @@ public class Turtle : MonoBehaviour
         {
             if (deadcollision)
             {
-                
-                r.velocity = new Vector2(direction * 7, r.velocity.y);
+
+                r.velocity = new Vector2(direction * 5, r.velocity.y);
                 if (!change2)
                 {
                     changePoints(100);
                     change2 = true;
                 }
             }
-        }
-
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Mario")
-        {
-            if (dead)
-            {
-                deadcollision = true;
-                direction = (int)(collision.gameObject.transform.position.x / Math.Abs(collision.gameObject.transform.position.x));
-            }
-
-            else
-            {
-                mario.hit();
-            }
-        }
-
-        else
-        {
-            if (!dead)
-            {
-                direction = -direction;
-            }
-            if (dead && deadcollision) {
+            else {
                 
-                if (collision.gameObject.tag == "Goomba") {
-                    Destroy(collision.gameObject);
-                }
-            
-            }
-            else
-            {
-                direction = -direction;
+                r.velocity = new Vector2(0f, r.velocity.y);
             }
         }
 
-
     }
+
+    
+
+
     private float nextJump=0f;
     private float jumpRate=0.2f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Mario")
+        if (collision.gameObject.tag == "Mario" && collision.gameObject.transform.position.y > transform.position.y+0.2f)
         {
-            
 
-            if (dead)
+            if (Time.time > nextJump) // control del rebote
             {
-                if (deadcollision == false)
+                if (dead)
                 {
-                    if (Time.time > nextJump)
+                    if (deadcollision == false)
                     {
-                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
-                        nextJump = jumpRate + Time.time;
+                            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
+                            
+                        
+                        deadcollision = true;
+                        if (!change2)
+                        {
+                            changePoints(100);
+                            change2 = true;
+                        }
                     }
-                    deadcollision = true;
-                    if (!change2)
-                    {
-                        changePoints(100);
-                        change2 = true;
-                    }
-                }
-                else
-                {
-                    if (Time.time > nextJump)
-                    {
-                        collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
-                        nextJump = jumpRate + Time.time;
-                    }
-                    r.velocity = new Vector2(0f, 0f);
-                    deadcollision = false;
-                }
-            }
 
-            if (!dead)
-            {
-                if (Time.time > nextJump)
+                    else
+                    {
+                        
+                            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
+                          
+                        
+
+                        r.velocity = new Vector2(0f, 0f);
+                        deadcollision = false;
+                    }
+
+                }
+
+                if (!dead) // si no esta muerto lo mata
                 {
+
                     collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
-                    nextJump = jumpRate + Time.time;
-                }
-                a.SetBool("Dead", true);
-                if (!change1)
-                {
-                    changePoints(100);
-                    change1 = true;
-                }
-                dead = true;
-            }
+                   
 
+
+
+                    a.SetBool("Dead", true);
+
+                    /* if (!change1)
+                    {
+                         changePoints(100);
+                         change1 = true;
+                     }
+                     */
+                    dead = true;
+                    Debug.Log("colision");
+                }
+            }
+            nextJump = jumpRate + Time.time;
         }
     }
 
