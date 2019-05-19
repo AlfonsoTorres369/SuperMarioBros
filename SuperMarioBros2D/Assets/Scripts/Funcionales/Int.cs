@@ -38,7 +38,8 @@ public class Int : MonoBehaviour
                     animation.SetBool("Hitted", true);
                     //animacion de bloque
                     sound.PlayOneShot(Appear, 1f);
-                    Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.9f, transform.position.z), Quaternion.identity);
+                    Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
+                    seta.GetComponent<Seta>().getPosFinal(transform.position.y + 8f);
                     
                 }
                 if (tipo == "Flower") {

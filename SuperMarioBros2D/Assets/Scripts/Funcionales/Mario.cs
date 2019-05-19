@@ -17,22 +17,29 @@ public class Mario : MonoBehaviour
     public bool grounded = true;
 
     public int health = 1;
+    private bool dead = false;
     public bool direction;
+    public float deadPos;
     public AudioClip Mushroom;
     public AudioClip Coin;
     public AudioClip Dead;
     public AudioClip Flag;
     public AudioClip Jump;
+    public AudioClip KillEnemy;
     private AudioSource sound;
     private float LastHit;
     private bool win;
     private bool scoreRec;
     private GameObject gameover;
+    private GameObject goomba;
+    private bool fellDown;
+    private float timeDead;
 
 
 
     void Start(){
 
+        timeDead = 0f;
         scoreRec = false;
         LastHit = 0f;
         scoreboard = GameObject.Find("Canvas");
@@ -42,6 +49,7 @@ public class Mario : MonoBehaviour
         sound = GetComponent<AudioSource>();
         win = false;
         gameover = GameObject.Find("Score&SceneController");
+        fellDown = false;
 
     }
 
@@ -50,14 +58,22 @@ public class Mario : MonoBehaviour
 
         if(!win)
         {
-            marioMovement();
-            jump();
-            fireCast();
+            if(!dead)
+            {
+                marioMovement();
+                jump();
+                fireCast();
+            }
+            if(dead)
+            {
+                deadFell(deadPos);
+            }
         }
         if(win && transform.position.y<-1.7)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
         }
+        fell();
 
     }
     public GameObject fire;
@@ -142,16 +158,36 @@ public class Mario : MonoBehaviour
         
     }
 
+    public void fell()
+    {
+        if(transform.position.y <= -5.2f && !fellDown)
+        {
+            fellDown = true;
+            a.SetBool("Dead", true);
+            if(!dead)
+            {
+                sound.PlayOneShot(Dead, 1f);
+            }
+            timeDead = Time.time;
+            
+        }
+        if(fellDown && Time.time - timeDead >= 3f)
+        {
+            gameover.GetComponent<GameOver>().Reload();
+        }
+    }
+
     public void hit() {
         if(Time.time - LastHit >= 1f)
         {
                 if(health == 1)
             {
+                dead = true;
+                deadPos = transform.position.x;
                 a.SetBool("Dead", true);
                 health--;
                 sound.PlayOneShot(Dead, 1f);
-                gameover.GetComponent<GameOver>().LoadNewScene();
-                //Destroy(gameObject);
+                
             }
             if(health == 2)
             {
@@ -163,9 +199,20 @@ public class Mario : MonoBehaviour
 
     }
 
+    void deadFell(float posX)
+    {
+        r.isKinematic = true;
+        transform.position = new Vector3(posX, transform.position.y - 0.1f, transform.position.y);
+    }
+
     public void PlayCoinSound()
     {
         sound.PlayOneShot(Coin, 1f);
+    }
+
+    public void PlayFlowerSound()
+    {
+        sound.PlayOneShot(Mushroom, 1f);
     }
     void OnTriggerExit2D(Collider2D c)
     {
@@ -196,6 +243,19 @@ public class Mario : MonoBehaviour
             a.SetBool("Win", true);
             scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 400;
             scoreRec = true;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D c)
+    {
+        if(c.gameObject.tag == "Wumpa")
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
+            goomba = c.gameObject;
+            sound.PlayOneShot(KillEnemy, 1f);
+            scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
+            //animacion
+            goomba.GetComponent<Goomba>().dead();
         }
     }
    

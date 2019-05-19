@@ -22,8 +22,9 @@ public class GameOver : MonoBehaviour
     {
        // Debug.Log("holi");
     }
-    public void LoadNewScene()
+    public void Reload()
     {
+        scoreboard.Lives--;
         if(scoreboard.Lives > 0)
         {
             StreamWriter score;
@@ -32,7 +33,7 @@ public class GameOver : MonoBehaviour
             score.WriteLine(scoreboard.Coins);
             score.WriteLine(scoreboard.Lives);
             score.Close();
-            //SceneManager.LoadScene("RetryScene");
+            SceneManager.LoadScene("World 1-1");
         }
         if(scoreboard.Lives == 0)
         {
@@ -42,7 +43,7 @@ public class GameOver : MonoBehaviour
             score.WriteLine("0");
             score.WriteLine("3");
             score.Close();
-            //SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("GameOverScene");
 
         }
     }

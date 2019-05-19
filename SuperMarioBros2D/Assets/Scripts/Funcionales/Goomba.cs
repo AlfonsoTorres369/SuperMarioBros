@@ -11,10 +11,12 @@ public class Goomba : MonoBehaviour
 
     public int direction = -1;
     public float speed = 2f;
+    private bool isDead;
     public GameObject mario;
 
     void Start()
     {
+        isDead = false;
         r = GetComponent<Rigidbody2D>();
         a = GetComponent<Animator>();
         mario = GameObject.FindWithTag("Mario");
@@ -25,7 +27,10 @@ public class Goomba : MonoBehaviour
     void Update()
     {
 
-        r.velocity = new Vector2(direction * speed, r.velocity.y);
+        if(!isDead)
+        {
+            r.velocity = new Vector2(direction * speed, r.velocity.y);
+        }
 
     }
 
@@ -51,7 +56,9 @@ public class Goomba : MonoBehaviour
     }
     public void dead()
     {
-        r.isKinematic = false;
+        isDead = true;
+        r.isKinematic = true;
+        GetComponent<Collider2D>().enabled = false;
         a.SetBool("Dead", true);
         Destroy(gameObject, 0.35f);
     }

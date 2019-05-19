@@ -8,6 +8,7 @@ public class Turtle : MonoBehaviour
     private Rigidbody2D r;
     private Animator a;
     private SpriteRenderer s;
+    private GameObject scoreboard;
     public bool deadcollision = false;
     public int direction = -1;
     public float speed = 20f;
@@ -19,6 +20,7 @@ public class Turtle : MonoBehaviour
 
     void Start()
     {
+        scoreboard = GameObject.Find("Canvas");
         r = GetComponent<Rigidbody2D>();
         a = GetComponent<Animator>();
         s = gameObject.GetComponent<SpriteRenderer>();
@@ -53,7 +55,8 @@ public class Turtle : MonoBehaviour
                 r.velocity = new Vector2(direction * 5, r.velocity.y);
                 if (!change2)
                 {
-                    changePoints(100);
+                    //changePoints(100);
+                    scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
                     change2 = true;
                 }
             }
@@ -88,7 +91,8 @@ public class Turtle : MonoBehaviour
                         deadcollision = true;
                         if (!change2)
                         {
-                            changePoints(100);
+                            //changePoints(100);
+                            scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
                             change2 = true;
                         }
                     }

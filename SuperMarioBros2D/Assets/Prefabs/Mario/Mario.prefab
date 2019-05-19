@@ -158,6 +158,7 @@ MonoBehaviour:
   Dead: {fileID: 8300000, guid: d81b2466092132a4aa9e0b9899402121, type: 3}
   Flag: {fileID: 8300000, guid: 313660a46b28c384da7f4e7001d99577, type: 3}
   Jump: {fileID: 8300000, guid: 778be695e2b1b66468ce99b93ffe8721, type: 3}
+  KillEnemy: {fileID: 8300000, guid: fdbb75d411b8dc7498c9735ad3d765dc, type: 3}
   fire: {fileID: 0}
   firespawn: {fileID: 0}
 --- !u!95 &2808149285674041484
