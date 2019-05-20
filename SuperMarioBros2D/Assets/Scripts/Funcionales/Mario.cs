@@ -37,7 +37,7 @@ public class Mario : MonoBehaviour
     private float timeDead;
     private bool ShootMode;
     private float startime;
-
+    public bool paused = false;
 
 
     void Start(){
@@ -56,7 +56,9 @@ public class Mario : MonoBehaviour
         fellDown = false;
 
     }
-
+    public void setpaused(bool pause) {
+        paused = pause;
+    }
     
     void Update(){
 
@@ -65,7 +67,10 @@ public class Mario : MonoBehaviour
             if(!dead)
             {
                 marioMovement();
-                jump();
+                if (!paused)
+                {
+                    jump();
+                }
                 Shoot();
             }
             if(dead)
@@ -127,7 +132,7 @@ public class Mario : MonoBehaviour
     void jump(){
 
         if (Input.GetKeyDown(KeyCode.Space)){
-            if (grounded) {
+            if (grounded && (Time.timeScale>0f)) {
 
                 sound.PlayOneShot(Jump, 1f);
                 r.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
