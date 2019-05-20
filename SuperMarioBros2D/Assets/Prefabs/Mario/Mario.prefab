@@ -153,6 +153,7 @@ MonoBehaviour:
   grounded: 1
   health: 1
   direction: 0
+  deadPos: 1.56
   Mushroom: {fileID: 8300000, guid: dad7e9d9f84358f449a6b522a995bfe1, type: 3}
   Coin: {fileID: 8300000, guid: 5106a149bf98f1747889dda7e7182c27, type: 3}
   Dead: {fileID: 8300000, guid: d81b2466092132a4aa9e0b9899402121, type: 3}
