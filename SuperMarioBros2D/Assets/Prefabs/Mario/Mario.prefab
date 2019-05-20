@@ -160,6 +160,9 @@ MonoBehaviour:
   Flag: {fileID: 8300000, guid: 313660a46b28c384da7f4e7001d99577, type: 3}
   Jump: {fileID: 8300000, guid: 778be695e2b1b66468ce99b93ffe8721, type: 3}
   KillEnemy: {fileID: 8300000, guid: fdbb75d411b8dc7498c9735ad3d765dc, type: 3}
+  Star: {fileID: 0}
+  paused: 0
+  Crashh: {fileID: 8300000, guid: 3f7929bf69fe100479f520fd32e611de, type: 3}
   fire: {fileID: 0}
   firespawn: {fileID: 0}
 --- !u!95 &2808149285674041484

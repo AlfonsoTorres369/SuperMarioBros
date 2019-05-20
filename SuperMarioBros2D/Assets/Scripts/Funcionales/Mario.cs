@@ -38,7 +38,7 @@ public class Mario : MonoBehaviour
     private bool ShootMode;
     private float startime;
     public bool paused = false;
-
+    public AudioClip Crashh;
 
     void Start(){
 
@@ -166,7 +166,9 @@ public class Mario : MonoBehaviour
         }
         
     }
-
+    public void crash() {
+        sound.PlayOneShot(Crashh, 1f);
+    }
     public void fell()
     {
         if(transform.position.y <= -5.2f && !fellDown)
