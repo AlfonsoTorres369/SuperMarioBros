@@ -54,7 +54,8 @@ public class Int : MonoBehaviour
                     animation.SetBool("Hitted", true);
                     sound.PlayOneShot(Appear, 1f);
                     Instantiate(star, new Vector3(transform.position.x, transform.position.y+0.1f, 1f), Quaternion.identity);
-                    star.GetComponent<Star>().getpos(transform.position.y + 0.7f);
+                    Debug.Log(transform.position.y + 0.581f);
+                    star.GetComponent<Star>().getpos(transform.position.y + 0.575f);
                 }
             }    
         }

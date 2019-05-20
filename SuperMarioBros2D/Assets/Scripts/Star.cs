@@ -19,16 +19,13 @@ public class Star : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(!movcompleto)
-        {
-            movimiento();
-        }
+    { 
+        movimiento(); 
     }
 
     void OnTriggerEnter2D(Collider2D c)
     {
-        if(c.gameObject.tag == "Mario" && !picked)
+        if(c.gameObject.tag == "Mario" && !picked && movcompleto)
         {
             picked = true;
             mario.GetComponent<Mario>().ShootModeOn();
