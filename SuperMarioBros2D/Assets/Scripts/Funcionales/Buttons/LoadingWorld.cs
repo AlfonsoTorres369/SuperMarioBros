@@ -1,13 +1,19 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class Controls : MonoBehaviour {
+public class LoadingWorld : MonoBehaviour {
+
+	//Esta es la forma correcta de mostrar variables privadas en el inspector. 
+	//No se deben hacer public variables que no queremos sean accesibles desde otras clases-
+
+
+	// En cuanto se active el objeto, se inciará el cambio de escena
 	void Start () {
-		//Iniciamos una corrutina
+		//Iniciamos una corrutina, que es un método que se ejecuta 
+		//en una línea de tiempo diferente al flujo principal del programa
 		StartCoroutine(LoadScene());
 	}
 
@@ -17,7 +23,7 @@ public class Controls : MonoBehaviour {
 		AsyncOperation loading;
 
 		//Iniciamos la carga asíncrona de la escena y guardamos el proceso en 'loading'
-		loading = SceneManager.LoadSceneAsync("ControlsScene", LoadSceneMode.Single);
+		loading = SceneManager.LoadSceneAsync("World 1-1", LoadSceneMode.Single);
 
 		//Bloqueamos el salto automático entre escenas para asegurarnos el control durante el proceso
 		loading.allowSceneActivation = false;
@@ -28,6 +34,10 @@ public class Controls : MonoBehaviour {
 			//Esperamos un frame
 			yield return null;
 		}
+
+		//Mostramos la carga como finalizada
+		
+
 		//Activamos el salto de escena.
 		loading.allowSceneActivation = true;
 
@@ -35,4 +45,3 @@ public class Controls : MonoBehaviour {
 	}
 
 }
-
