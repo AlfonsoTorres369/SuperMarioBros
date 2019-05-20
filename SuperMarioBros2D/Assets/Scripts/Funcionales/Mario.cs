@@ -227,7 +227,7 @@ public class Mario : MonoBehaviour
     void OnTriggerStay2D(Collider2D c)
     {
 
-        if (c.gameObject.tag == "Platform" || c.gameObject.tag == "Ground")
+        if (c.gameObject.tag == "Platform" || c.gameObject.tag == "Ground" ||c.gameObject.tag == "Box")
         {
             grounded = true;
         }

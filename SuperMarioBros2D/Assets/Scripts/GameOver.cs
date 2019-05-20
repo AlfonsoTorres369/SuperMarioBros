@@ -8,10 +8,12 @@ public class GameOver : MonoBehaviour
 {
     private GameObject canvas;
     private Scoreboard scoreboard;
+    private GameObject cam;
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        cam = GameObject.Find("Main Camera");
         canvas = GameObject.Find("Canvas");
         scoreboard = canvas.GetComponent<Scoreboard>();
         DataCharge();
@@ -27,21 +29,25 @@ public class GameOver : MonoBehaviour
         scoreboard.Lives--;
         if(scoreboard.Lives > 0)
         {
+            File.Delete("../SuperMarioBros2D/Assets/Data/Score.txt");
             StreamWriter score;
             score = File.CreateText("../SuperMarioBros2D/Assets/Data/Score.txt");
             score.WriteLine(scoreboard.Score);
             score.WriteLine(scoreboard.Coins);
             score.WriteLine(scoreboard.Lives);
+            score.WriteLine(cam.GetComponent<DisableSound>().muteSound);
             score.Close();
             SceneManager.LoadScene("World 1-1");
         }
         if(scoreboard.Lives == 0)
         {
+            File.Delete("../SuperMarioBros2D/Assets/Data/Score.txt");
             StreamWriter score;
             score = File.CreateText("../SuperMarioBros2D/Assets/Data/Score.txt");
             score.WriteLine("0");
             score.WriteLine("0");
             score.WriteLine("3");
+            score.WriteLine(cam.GetComponent<DisableSound>().muteSound);
             score.Close();
             SceneManager.LoadScene("GameOverScene");
 
@@ -55,7 +61,18 @@ public class GameOver : MonoBehaviour
             scoreboard.Score = Int32.Parse(score.ReadLine());
             scoreboard.Coins = Int32.Parse(score.ReadLine());
             scoreboard.Lives = Int32.Parse(score.ReadLine());
+            cam.GetComponent<DisableSound>().muteSound = bool.Parse(score.ReadLine());
             score.Close();
+    }
+    public void ReloadOptions()
+    {
             File.Delete("../SuperMarioBros2D/Assets/Data/Score.txt");
+            StreamWriter score;
+            score = File.CreateText("../SuperMarioBros2D/Assets/Data/Score.txt");
+            score.WriteLine("0");
+            score.WriteLine("0");
+            score.WriteLine("3");
+            score.WriteLine(cam.GetComponent<DisableSound>().muteSound);
+            score.Close();
     }
 }
