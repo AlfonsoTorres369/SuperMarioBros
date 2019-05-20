@@ -26,6 +26,7 @@ public class Mario : MonoBehaviour
     public AudioClip Flag;
     public AudioClip Jump;
     public AudioClip KillEnemy;
+    public AudioClip Star;
     private AudioSource sound;
     private float LastHit;
     private bool win;
@@ -34,11 +35,14 @@ public class Mario : MonoBehaviour
     private GameObject goomba;
     private bool fellDown;
     private float timeDead;
+    private bool ShootMode;
+    private float startime;
 
 
 
     void Start(){
 
+        ShootMode = false;
         timeDead = 0f;
         scoreRec = false;
         LastHit = 0f;
@@ -62,7 +66,7 @@ public class Mario : MonoBehaviour
             {
                 marioMovement();
                 jump();
-                fireCast();
+                Shoot();
             }
             if(dead)
             {
@@ -256,6 +260,25 @@ public class Mario : MonoBehaviour
             scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
             //animacion
             goomba.GetComponent<Goomba>().dead();
+        }
+    }
+
+    public void ShootModeOn()
+    {
+            sound.PlayOneShot(Star, 1f);
+            ShootMode = true;
+            startime = Time.time;
+    }
+
+    private void Shoot()
+    {
+        if(Time.time - startime >= 5f)
+        {
+            ShootMode = false;
+        }
+        else
+        {
+            //Disparar.
         }
     }
    

@@ -9,6 +9,7 @@ public class Int : MonoBehaviour
     public GameObject seta;
     public GameObject flor;
     public GameObject coin;
+    public GameObject star;
     private bool spawned = false;
     private Animator animation;
     public AudioClip Appear;
@@ -36,7 +37,6 @@ public class Int : MonoBehaviour
                 if (tipo == "Mushroom")
                 {
                     animation.SetBool("Hitted", true);
-                    //animacion de bloque
                     sound.PlayOneShot(Appear, 1f);
                     Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
                     seta.GetComponent<Seta>().getPosFinal(transform.position.y + 8f);
@@ -47,6 +47,14 @@ public class Int : MonoBehaviour
                     sound.PlayOneShot(Appear, 1f);
                     Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
                     flor.GetComponent<Flor>().getpos(transform.position.y + 0.556f);
+                }
+
+                if(tipo == "Star")
+                {
+                    animation.SetBool("Hitted", true);
+                    sound.PlayOneShot(Appear, 1f);
+                    Instantiate(star, new Vector3(transform.position.x, transform.position.y+0.1f, 1f), Quaternion.identity);
+                    star.GetComponent<Star>().getpos(transform.position.y + 0.7f);
                 }
             }    
         }
