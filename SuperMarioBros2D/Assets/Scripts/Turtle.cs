@@ -14,7 +14,8 @@ public class Turtle : MonoBehaviour
     public float speed = 20f;
     public Mario mario;
     public bool dead = false;
-
+    private AudioSource sound;
+    public AudioClip KillEnemy;
     public bool change1 = false;
     public bool change2 = false;
 
@@ -24,6 +25,8 @@ public class Turtle : MonoBehaviour
         r = GetComponent<Rigidbody2D>();
         a = GetComponent<Animator>();
         s = gameObject.GetComponent<SpriteRenderer>();
+        sound = GetComponent<AudioSource>();
+        change2 = false;
     }
     void flip()
     {
@@ -55,7 +58,7 @@ public class Turtle : MonoBehaviour
                 r.velocity = new Vector2(direction * 5, r.velocity.y);
                 if (!change2)
                 {
-                    //changePoints(100);
+                    
                     scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
                     change2 = true;
                 }
@@ -92,6 +95,7 @@ public class Turtle : MonoBehaviour
                         if (!change2)
                         {
                             //changePoints(100);
+                            sound.PlayOneShot(KillEnemy, 1f);
                             scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
                             change2 = true;
                         }
@@ -101,9 +105,9 @@ public class Turtle : MonoBehaviour
                     {
                         
                             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
-                          
-                        
 
+
+                        sound.PlayOneShot(KillEnemy, 1f);
                         r.velocity = new Vector2(0f, 0f);
                         deadcollision = false;
                     }
@@ -119,13 +123,12 @@ public class Turtle : MonoBehaviour
 
 
                     a.SetBool("Dead", true);
-
-                    /* if (!change1)
+                    sound.PlayOneShot(KillEnemy, 1f);
+                    if (!change1)
                     {
-                         changePoints(100);
-                         change1 = true;
-                     }
-                     */
+                        scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
+                    }
+                     
                     dead = true;
                     Debug.Log("colision");
                 }
