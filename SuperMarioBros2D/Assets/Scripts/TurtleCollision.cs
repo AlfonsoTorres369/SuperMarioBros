@@ -10,9 +10,11 @@ public class TurtleCollision : MonoBehaviour
     private float jumpRate = 0.2f;
     private AudioSource sound;
     public AudioClip rebote;
+    private GameObject mario;
 
     void Start() {
         sound = GetComponent<AudioSource>();
+        mario = GameObject.FindWithTag("Mario");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -63,7 +65,7 @@ public class TurtleCollision : MonoBehaviour
                     }
                     else
                     {
-                        sound.PlayOneShot(rebote, 1f);
+                            sound.PlayOneShot(rebote, 1f);
                         turtle.direction = -turtle.direction;
                     }
                 }

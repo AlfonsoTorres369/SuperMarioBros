@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateGoomba : MonoBehaviour
+public class CreateKoopa : MonoBehaviour
 {
     public float x;
     public float y;
-    public int direction;
     private bool spawned = false;
-    public GameObject goomba;
+    public GameObject koopa;
+
+    public int direction;
 
     public void Start(){
 
@@ -24,8 +25,8 @@ public class CreateGoomba : MonoBehaviour
         {
             if (!spawned)
             {
-                goomba = Instantiate(goomba, new Vector2(x, y), Quaternion.identity);
-                goomba.GetComponent<Goomba>().direction = direction;
+                koopa = Instantiate(koopa, new Vector2(x, y), Quaternion.identity);
+                koopa.GetComponent<Turtle>().direction = direction;
                 spawned = true;
                 gameObject.SetActive(false);
 
@@ -33,5 +34,4 @@ public class CreateGoomba : MonoBehaviour
         }
 
     }
-
 }

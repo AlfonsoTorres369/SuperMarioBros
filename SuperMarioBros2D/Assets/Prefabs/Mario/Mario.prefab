@@ -34,7 +34,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.56, y: -3.45, z: 0}
   m_LocalScale: {x: 3.6133366, y: 3.6133366, z: 3.6133366}
-  m_Children: []
+  m_Children:
+  - {fileID: 603610899195671937}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,6 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759dc992e2532ca4e84f45f7e98d1d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireball: {fileID: 93581191510736443, guid: d351a61fda2f9f243b4c7cb5f3ac0f35, type: 3}
+  firespawn: {fileID: 603610899195671937}
   moveX: 0
   Speed: 4
   jumpPower: 745
@@ -160,11 +163,9 @@ MonoBehaviour:
   Flag: {fileID: 8300000, guid: 313660a46b28c384da7f4e7001d99577, type: 3}
   Jump: {fileID: 8300000, guid: 778be695e2b1b66468ce99b93ffe8721, type: 3}
   KillEnemy: {fileID: 8300000, guid: fdbb75d411b8dc7498c9735ad3d765dc, type: 3}
-  Star: {fileID: 0}
+  Star: {fileID: 8300000, guid: 6265dfacb6fb95d4881ab64b3da39f16, type: 3}
   paused: 0
   Crashh: {fileID: 8300000, guid: 3f7929bf69fe100479f520fd32e611de, type: 3}
-  fire: {fileID: 0}
-  firespawn: {fileID: 0}
 --- !u!95 &2808149285674041484
 Animator:
   serializedVersion: 3
@@ -312,3 +313,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1930226835669445051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 603610899195671937}
+  m_Layer: 0
+  m_Name: FireSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &603610899195671937
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930226835669445051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.157, y: -0.0132, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 962794468526603709}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

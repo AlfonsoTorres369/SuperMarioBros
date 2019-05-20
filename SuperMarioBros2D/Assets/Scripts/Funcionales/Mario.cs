@@ -9,6 +9,8 @@ public class Mario : MonoBehaviour
     private Animator a;
     SpriteRenderer s;
     private GameObject scoreboard;
+    public GameObject fireball;
+    public Transform firespawn;
 
     public float moveX;
     public float Speed = 12f;
@@ -85,16 +87,7 @@ public class Mario : MonoBehaviour
         fell();
 
     }
-    public GameObject fire;
-    public Transform firespawn;
 
-    void fireCast()
-    {
-        
-        if(Input.GetKeyDown(KeyCode.LeftShift)){
-            Instantiate(fire, firespawn.position, Quaternion.identity);
-        }
-    }
 
     public int requestDirection() {
         Debug.Log(direction);
@@ -283,9 +276,13 @@ public class Mario : MonoBehaviour
         {
             ShootMode = false;
         }
-        else
+        else if(ShootMode)
         {
-            //Disparar.
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+               Instantiate(fireball, firespawn.position, Quaternion.identity); 
+            }
+            //Disparar. Instaciar una bola en mario que avance.
         }
     }
    

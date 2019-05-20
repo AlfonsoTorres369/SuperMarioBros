@@ -14,6 +14,7 @@ public class Int : MonoBehaviour
     private Animator animation;
     public AudioClip Appear;
     private AudioSource sound;
+    public float posFinal;
 
     void Start()
     {
@@ -38,24 +39,23 @@ public class Int : MonoBehaviour
                 {
                     animation.SetBool("Hitted", true);
                     sound.PlayOneShot(Appear, 1f);
-                    Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
-                    seta.GetComponent<Seta>().getPosFinal(transform.position.y + 8f);
+                    seta = Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
+                    seta.GetComponent<Seta>().getPosFinal(posFinal);
                     
                 }
                 if (tipo == "Flower") {
                     animation.SetBool("Hitted", true);
                     sound.PlayOneShot(Appear, 1f);
-                    Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
-                    flor.GetComponent<Flor>().getpos(transform.position.y + 0.556f);
+                    flor = Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
+                    flor.GetComponent<Flor>().getpos(transform.position.y + 0.565f);
                 }
 
                 if(tipo == "Star")
                 {
                     animation.SetBool("Hitted", true);
                     sound.PlayOneShot(Appear, 1f);
-                    Instantiate(star, new Vector3(transform.position.x, transform.position.y+0.1f, 1f), Quaternion.identity);
-                    Debug.Log(transform.position.y + 0.581f);
-                    star.GetComponent<Star>().getpos(transform.position.y + 0.575f);
+                    star = Instantiate(star, new Vector3(transform.position.x, transform.position.y+0.1f, 1f), Quaternion.identity);
+                    star.GetComponent<Star>().getpos(transform.position.y + 0.6f);
                 }
             }    
         }

@@ -16,6 +16,7 @@ public class Block : MonoBehaviour
  
     //otrosonido
     private AudioSource sound;
+    public float posFinal;
 
     void Start()
     {
@@ -49,7 +50,7 @@ public class Block : MonoBehaviour
                     animation.SetBool("Active", false);
                     sound.PlayOneShot(Appear, 1f);
                     Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
-                    seta.GetComponent<Seta>().getPosFinal(transform.position.y + 8f);
+                    seta.GetComponent<Seta>().getPosFinal(posFinal);
 
                 }
                 if (tipo == "Flower")
@@ -57,7 +58,7 @@ public class Block : MonoBehaviour
                     animation.SetBool("Active", false);
                     sound.PlayOneShot(Appear, 1f);
                     Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
-                    flor.GetComponent<Flor>().getpos(transform.position.y + 0.556f);
+                    flor.GetComponent<Flor>().getpos(posFinal);
                 }
 
                 if (tipo == "Star")
@@ -66,7 +67,7 @@ public class Block : MonoBehaviour
                     sound.PlayOneShot(Appear, 1f);
                     Instantiate(star, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
                     Debug.Log(transform.position.y + 0.581f);
-                    star.GetComponent<Star>().getpos(transform.position.y + 0.575f);
+                    star.GetComponent<Star>().getpos(posFinal);
                 }
 
                 if (tipo == "Normal")

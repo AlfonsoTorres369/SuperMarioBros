@@ -15,6 +15,7 @@ public class Star : MonoBehaviour
         movcompleto = false;
         scoreboard = GameObject.Find("Canvas");
         picked = false;
+        mario = GameObject.FindWithTag("Mario");
     }
 
     // Update is called once per frame

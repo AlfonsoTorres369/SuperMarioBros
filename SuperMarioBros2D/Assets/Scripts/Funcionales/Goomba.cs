@@ -42,7 +42,7 @@ public class Goomba : MonoBehaviour
         }
 
 
-        else
+        else if(collision.gameObject.tag != "Ground")
         {
             direction = -direction;
         }

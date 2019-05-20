@@ -5,15 +5,18 @@ using UnityEngine;
 public class DisableSound : MonoBehaviour
 {
     private GameObject[] soundObj;
+    private GameObject[] enemySound;
     private GameObject mario;
     public bool muteSound;
     private GameObject gameover;
     // Start is called before the first frame update
     void Start()
     {
+        enemySound = GameObject.FindGameObjectsWithTag("Turtle");
         gameover = GameObject.Find("Score&SceneController");
         mario = GameObject.FindWithTag("Mario");
         soundObj = GameObject.FindGameObjectsWithTag("Box");
+
         if(muteSound)
         {
             mario.GetComponent<AudioSource>().mute = true;
@@ -21,6 +24,11 @@ public class DisableSound : MonoBehaviour
             for(int i=0; i<soundObj.Length; i++)
             {
                 soundObj[i].GetComponent<AudioSource>().mute = true;
+            }
+            for(int i=0; i<enemySound.Length; i++)
+            {
+                enemySound[i].GetComponent<AudioSource>().mute = true;
+                enemySound[i].transform.GetChild(0).GetComponent<GameObject>().GetComponent<AudioSource>().mute = true;
             }
         }
         //Aquí, acceder al fichero Score para ver si la última vez que se jugó estaba en silencio o no.
@@ -41,6 +49,11 @@ public class DisableSound : MonoBehaviour
             {
                 soundObj[i].GetComponent<AudioSource>().mute = true;
             }
+            for(int i=0; i<enemySound.Length; i++)
+            {
+                enemySound[i].GetComponent<AudioSource>().mute = true;
+                enemySound[i].transform.GetChild(0).GetComponent<GameObject>().GetComponent<AudioSource>().mute = true;
+            }
         }
         else if(Input.GetKeyDown(KeyCode.M) && muteSound)
         {
@@ -51,6 +64,11 @@ public class DisableSound : MonoBehaviour
             for(int i=0; i<soundObj.Length; i++)
             {
                 soundObj[i].GetComponent<AudioSource>().mute = false;
+            }
+            for(int i=0; i<enemySound.Length; i++)
+            {
+                enemySound[i].GetComponent<AudioSource>().mute = false;
+                enemySound[i].transform.GetChild(0).GetComponent<GameObject>().GetComponent<AudioSource>().mute = false;
             }
         }
     }
