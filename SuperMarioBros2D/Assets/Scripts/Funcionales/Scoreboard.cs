@@ -29,10 +29,10 @@ public class Scoreboard : MonoBehaviour
     void Update()
     {
         //Accedemos a los campos de texto y cambiamos su contenido dependiendo de las variables que irán actualizando otros scripts.
-        CoinsUI.GetComponent<Text>().text = "COINS\n  "+Coins;
+        CoinsUI.GetComponent<Text>().text = "COINS\n "+string.Format("{0,4:0000}", Coins);
         LivesUI.GetComponent<Text>().text = "LIVES\n  "+Lives;
-        TimeUI.GetComponent<Text>().text = "TIME\n  "+TimeGame;
-        ScoreUI.GetComponent<Text>().text = "SCORE\n  "+Score;
+        TimeUI.GetComponent<Text>().text = "TIME\n"+TimeGame;
+        ScoreUI.GetComponent<Text>().text = "SCORE\n"+string.Format("{0,6:000000}", Score);
         updateTime();
     }
 
@@ -45,3 +45,13 @@ public class Scoreboard : MonoBehaviour
         }
     }
 }
+/* public void changePoints(int points)
+    {
+
+            Text score = GameObject.Find("ScoreBoard").GetComponent<Text>();
+            int scoreboard = System.Convert.ToInt32(score.text);
+            scoreboard += points;
+            score.text = String.Format("{0,6:000000}", scoreboard);
+     
+    }*/
+

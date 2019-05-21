@@ -35,7 +35,7 @@ public class CarnivorousPlant : MonoBehaviour
     {
         if(c.gameObject.CompareTag("Mario"))
         {
-            mario.GetComponent<Mario>().hit();
+            mario.GetComponent<Mario>().hit(false);
         }
     }
 

@@ -163,7 +163,10 @@ MonoBehaviour:
   Flag: {fileID: 8300000, guid: 313660a46b28c384da7f4e7001d99577, type: 3}
   Jump: {fileID: 8300000, guid: 778be695e2b1b66468ce99b93ffe8721, type: 3}
   KillEnemy: {fileID: 8300000, guid: fdbb75d411b8dc7498c9735ad3d765dc, type: 3}
+  castfireball: {fileID: 8300000, guid: 74b95f1165679de4184f26ee24144d69, type: 3}
   Star: {fileID: 8300000, guid: 6265dfacb6fb95d4881ab64b3da39f16, type: 3}
+  powerDown: {fileID: 8300000, guid: 9618bb767af59fd4cb096a44e382bffc, type: 3}
+  sound: {fileID: 0}
   paused: 0
   Crashh: {fileID: 8300000, guid: 3f7929bf69fe100479f520fd32e611de, type: 3}
 --- !u!95 &2808149285674041484

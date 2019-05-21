@@ -31,6 +31,10 @@ public class Goomba : MonoBehaviour
         {
             r.velocity = new Vector2(direction * speed, r.velocity.y);
         }
+        if(isDead)
+        {
+            r.velocity = new Vector2(0,0);
+        }
 
     }
 
@@ -38,7 +42,7 @@ public class Goomba : MonoBehaviour
     {
         if (collision.gameObject.tag == "Mario")
         {
-            mario.GetComponent<Mario>().hit();
+            mario.GetComponent<Mario>().hit(false);
         }
 
 

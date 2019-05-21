@@ -38,12 +38,12 @@ public class TurtleCollision : MonoBehaviour
                 }
             }
             else if (turtle.deadcollision) {
-                collision.gameObject.GetComponent<Mario>().hit();
+                collision.gameObject.GetComponent<Mario>().hit(false);
             }
 
             else
             {
-                collision.gameObject.GetComponent<Mario>().hit();
+                collision.gameObject.GetComponent<Mario>().hit(false);
             }
         }
 

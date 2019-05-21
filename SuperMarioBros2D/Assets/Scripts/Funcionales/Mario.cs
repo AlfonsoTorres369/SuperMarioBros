@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Mario : MonoBehaviour
 {
@@ -28,8 +29,10 @@ public class Mario : MonoBehaviour
     public AudioClip Flag;
     public AudioClip Jump;
     public AudioClip KillEnemy;
+    public AudioClip castfireball;
     public AudioClip Star;
-    private AudioSource sound;
+    public AudioClip powerDown;
+    public AudioSource sound;
     private float LastHit;
     private bool win;
     private bool scoreRec;
@@ -41,9 +44,11 @@ public class Mario : MonoBehaviour
     private float startime;
     public bool paused = false;
     public AudioClip Crashh;
+    private Vector3 initialPositionFS;
 
     void Start(){
 
+        initialPositionFS = firespawn.position;
         ShootMode = false;
         timeDead = 0f;
         scoreRec = false;
@@ -74,15 +79,23 @@ public class Mario : MonoBehaviour
                     jump();
                 }
                 Shoot();
+                if(scoreboard.GetComponent<Scoreboard>().TimeGame<=0)
+                {
+                    hit(true);
+                }
             }
             if(dead)
             {
                 deadFell(deadPos);
             }
         }
-        if(win && transform.position.y<-1.7)
+        if(win && transform.position.y>-1.7)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+        }
+        else if(win)
+        {
+            SceneManager.LoadScene("VictoryScene", LoadSceneMode.Single); 
         }
         fell();
 
@@ -110,7 +123,6 @@ public class Mario : MonoBehaviour
                 
             }
             else {
-                Debug.Log("Hola");
                 direction = false;
                 
             }
@@ -153,7 +165,6 @@ public class Mario : MonoBehaviour
         sound.PlayOneShot(Mushroom, 1f);
         if (health == 1)
         {
-            //animacion mario grande
             a.SetBool("SuperMario", true);
             health++;
         }
@@ -181,10 +192,10 @@ public class Mario : MonoBehaviour
         }
     }
 
-    public void hit() {
+    public void hit(bool timeExpired) {
         if(Time.time - LastHit >= 1f)
         {
-                if(health == 1)
+            if(health == 1 || timeExpired)
             {
                 dead = true;
                 deadPos = transform.position.x;
@@ -196,6 +207,7 @@ public class Mario : MonoBehaviour
             if(health == 2)
             {
                 health--;
+                sound.PlayOneShot(powerDown, 1f);
                 a.SetBool("SuperMario", false);
             }
             LastHit = Time.time;
@@ -206,7 +218,7 @@ public class Mario : MonoBehaviour
     void deadFell(float posX)
     {
         r.isKinematic = true;
-        transform.position = new Vector3(posX, transform.position.y - 0.1f, transform.position.y);
+        transform.position = new Vector3(posX, transform.position.y - 0.1f, transform.position.z);
     }
 
     public void PlayCoinSound()
@@ -221,7 +233,7 @@ public class Mario : MonoBehaviour
     void OnTriggerExit2D(Collider2D c)
     {
 
-        if (c.gameObject.tag == "Platform" ||c.gameObject.tag == "Ground")
+        if (c.gameObject.tag == "Platform" ||c.gameObject.tag == "Ground" || c.gameObject.tag == "Box") 
         {
 
             grounded = false;
@@ -272,17 +284,26 @@ public class Mario : MonoBehaviour
 
     private void Shoot()
     {
-        if(Time.time - startime >= 5f)
+        if(Time.time - startime >= 5f && ShootMode)
         {
+            sound.Stop();
             ShootMode = false;
         }
         else if(ShootMode)
         {
             if(Input.GetKeyDown(KeyCode.X))
             {
-               Instantiate(fireball, firespawn.position, Quaternion.identity); 
+                if(!direction)
+                {
+                    sound.PlayOneShot(castfireball, 1f);
+                    Instantiate(fireball, firespawn.position, Quaternion.identity); 
+                }
+                else
+                {
+                    sound.PlayOneShot(castfireball, 1f);
+                    Instantiate(fireball, new Vector3(firespawn.position.x - 1f, firespawn.position.y, firespawn.position.z), Quaternion.identity);
+                } 
             }
-            //Disparar. Instaciar una bola en mario que avance.
         }
     }
    

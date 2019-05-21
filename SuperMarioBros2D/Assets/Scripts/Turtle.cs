@@ -12,7 +12,7 @@ public class Turtle : MonoBehaviour
     public bool deadcollision = false;
     public int direction = -1;
     public float speed = 20f;
-    public Mario mario;
+    private GameObject mario;
     public bool dead = false;
     private AudioSource sound;
     public AudioClip KillEnemy;
@@ -21,6 +21,7 @@ public class Turtle : MonoBehaviour
 
     void Start()
     {
+        mario = GameObject.FindWithTag("Mario");
         scoreboard = GameObject.Find("Canvas");
         r = GetComponent<Rigidbody2D>();
         a = GetComponent<Animator>();
@@ -145,6 +146,12 @@ public class Turtle : MonoBehaviour
             scoreboard += points;
             score.text = String.Format("{0,6:000000}", scoreboard);
      
+    }
+
+    public void deadFire()
+    {
+        mario.GetComponent<Mario>().sound.PlayOneShot(KillEnemy, 1f);
+        Destroy(gameObject);
     }
 
 }
