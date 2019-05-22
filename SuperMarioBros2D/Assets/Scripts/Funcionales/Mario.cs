@@ -136,7 +136,8 @@ public class Mario : MonoBehaviour
 
     void jump(){
 
-        if (Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKeyDown("w")|| Input.GetKeyDown(KeyCode.UpArrow))
+        {
             if (grounded && (Time.timeScale>0f)) {
 
                 sound.PlayOneShot(Jump, 1f);
@@ -291,7 +292,7 @@ public class Mario : MonoBehaviour
         }
         else if(ShootMode)
         {
-            if(Input.GetKeyDown(KeyCode.X))
+            if(Input.GetKeyDown(KeyCode.LeftShift))
             {
                 if(!direction)
                 {

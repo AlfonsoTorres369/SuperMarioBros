@@ -18,7 +18,7 @@ public class Turtle : MonoBehaviour
     public AudioClip KillEnemy;
     public bool change1 = false;
     public bool change2 = false;
-
+    private bool pulsado;
     void Start()
     {
         mario = GameObject.FindWithTag("Mario");
@@ -28,6 +28,7 @@ public class Turtle : MonoBehaviour
         s = gameObject.GetComponent<SpriteRenderer>();
         sound = GetComponent<AudioSource>();
         change2 = false;
+        pulsado = false;
     }
     void flip()
     {
@@ -44,6 +45,7 @@ public class Turtle : MonoBehaviour
 
     void Update()
     {
+        checkpulsado();
         flip();
         if (!dead)
         {
@@ -71,8 +73,19 @@ public class Turtle : MonoBehaviour
         }
 
     }
+    void checkpulsado() {
 
-    
+        if (Input.GetKeyDown("m") && !pulsado)
+        {
+            pulsado = true;
+        }
+        else if (Input.GetKeyDown("m") && pulsado)
+        {
+            pulsado = false;
+        }
+
+    }
+
 
 
     private float nextJump=0f;
@@ -95,8 +108,11 @@ public class Turtle : MonoBehaviour
                         deadcollision = true;
                         if (!change2)
                         {
-                            //changePoints(100);
-                            sound.PlayOneShot(KillEnemy, 1f);
+                            //changePoints(100)
+                            if (!pulsado)
+                            {
+                                sound.PlayOneShot(KillEnemy, 1f);
+                            }
                             scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
                             change2 = true;
                         }
@@ -107,8 +123,10 @@ public class Turtle : MonoBehaviour
                         
                             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000f, ForceMode2D.Impulse);
 
-
-                        sound.PlayOneShot(KillEnemy, 1f);
+                        if (!pulsado)
+                        {
+                            sound.PlayOneShot(KillEnemy, 1f);
+                        }
                         r.velocity = new Vector2(0f, 0f);
                         deadcollision = false;
                     }
@@ -124,7 +142,10 @@ public class Turtle : MonoBehaviour
 
 
                     a.SetBool("Dead", true);
-                    sound.PlayOneShot(KillEnemy, 1f);
+                    if (!pulsado)
+                    {
+                        sound.PlayOneShot(KillEnemy, 1f);
+                    }
                     if (!change1)
                     {
                         scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
