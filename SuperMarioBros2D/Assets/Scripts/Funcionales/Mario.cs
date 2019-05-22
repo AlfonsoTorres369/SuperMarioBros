@@ -219,7 +219,7 @@ public class Mario : MonoBehaviour
     void deadFell(float posX)
     {
         r.isKinematic = true;
-        transform.position = new Vector3(posX, transform.position.y - 0.1f, transform.position.z);
+        transform.position = new Vector3(posX, transform.position.y - 0.1f, -2f);
     }
 
     public void PlayCoinSound()
@@ -292,7 +292,7 @@ public class Mario : MonoBehaviour
         }
         else if(ShootMode)
         {
-            if(Input.GetKeyDown(KeyCode.LeftShift))
+            if(Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.Space))
             {
                 if(!direction)
                 {
