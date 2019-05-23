@@ -24,13 +24,13 @@ public class Block : MonoBehaviour
             tipo = "Normal";
         }
         pulsado = false;
+        animation = GetComponent<Animator>();
+        sound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        sound = GetComponent<AudioSource>();
-        animation = GetComponent<Animator>();
         checkpulsado();
     }
 
@@ -69,7 +69,7 @@ public class Block : MonoBehaviour
                     {
                         sound.PlayOneShot(Appear, 1f);
                     }
-                    Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
+                    seta = Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
                     seta.GetComponent<Seta>().getPosFinal(posFinal);
 
                 }
@@ -80,7 +80,7 @@ public class Block : MonoBehaviour
                     {
                         sound.PlayOneShot(Appear, 1f);
                     }
-                    Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
+                    flor = Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
                     flor.GetComponent<Flor>().getpos(posFinal);
                 }
 
@@ -91,7 +91,7 @@ public class Block : MonoBehaviour
                     {
                         sound.PlayOneShot(Appear, 1f);
                     }
-                    Instantiate(star, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
+                    star = Instantiate(star, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
                     Debug.Log(transform.position.y + 0.581f);
                     star.GetComponent<Star>().getpos(posFinal);
                 }

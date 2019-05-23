@@ -121,7 +121,7 @@ Animator:
   m_GameObject: {fileID: 3266427535150778848}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5af85a5cd7dac9846ba0a3504a200d7a, type: 2}
+  m_Controller: {fileID: 9100000, guid: e47f340d6c695e44dac7ca25c7d73e20, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   star: {fileID: 5536328500387547714, guid: f60ef57fdb3c2f74ea1eb6e01c1a73ce, type: 3}
   Appear: {fileID: 8300000, guid: 6516749ab698ece40997cd49a6d01742, type: 3}
   Bump: {fileID: 8300000, guid: 1e008b4e37307214282f38ad2761b06a, type: 3}
-  Crash: {fileID: 8300000, guid: 3f7929bf69fe100479f520fd32e611de, type: 3}
+  posFinal: 0
 --- !u!61 &2221304935806667690
 BoxCollider2D:
   m_ObjectHideFlags: 0
