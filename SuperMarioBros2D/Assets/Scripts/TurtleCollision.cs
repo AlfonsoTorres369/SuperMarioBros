@@ -11,9 +11,13 @@ public class TurtleCollision : MonoBehaviour
     private AudioSource sound;
     public AudioClip rebote;
     private GameObject mario;
+    private GameObject padre;
+    private GameObject scoreboard;
     void Start() {
+        scoreboard = GameObject.Find("Canvas");
         sound = GetComponent<AudioSource>();
         mario = GameObject.FindWithTag("Mario");
+        padre = transform.parent.gameObject;
     }
     public void Update() { 
         
@@ -62,6 +66,8 @@ public class TurtleCollision : MonoBehaviour
                     
                     if (collision.gameObject.tag == "Wumpa")
                     {
+                        //score
+                        scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
                         collision.gameObject.GetComponent<Goomba>().dead();
                     }
                     else
@@ -76,6 +82,14 @@ public class TurtleCollision : MonoBehaviour
                         turtle.direction = -turtle.direction;
                     }
                 }
+            }
+            if(collision.gameObject.tag == "Turtle" && collision.gameObject != padre &&turtle.dead)
+            {
+                collision.gameObject.GetComponent<Turtle>().deadFire();
+            }
+            if(collision.gameObject.tag == "Turtle" && collision.gameObject != padre &&!turtle.dead)
+            {
+                turtle.direction = -turtle.direction;
             }
         }
     }

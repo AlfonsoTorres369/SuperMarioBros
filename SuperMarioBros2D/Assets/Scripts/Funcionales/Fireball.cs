@@ -6,9 +6,11 @@ public class Fireball : MonoBehaviour
 {
     private int direction;
     private GameObject mario;
+    private GameObject scoreboard;
     // Start is called before the first frame update
     void Start()
     {
+        scoreboard = GameObject.Find("Canvas");
        mario = GameObject.FindWithTag("Mario");
        if(mario.GetComponent<Mario>().direction)
        {
@@ -31,6 +33,7 @@ public class Fireball : MonoBehaviour
     {
         if(c.gameObject.tag == "Wumpa")
         {
+            scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
             c.gameObject.GetComponent<Goomba>().dead();
             Destroy(gameObject);
         }

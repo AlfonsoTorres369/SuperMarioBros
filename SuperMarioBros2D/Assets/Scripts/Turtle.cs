@@ -18,6 +18,7 @@ public class Turtle : MonoBehaviour
     public AudioClip KillEnemy;
     public bool change1 = false;
     public bool change2 = false;
+    private bool scored = false;
     
     void Start()
     {
@@ -138,27 +139,22 @@ public class Turtle : MonoBehaviour
                     }
                      
                     dead = true;
-                    Debug.Log("colision");
                 }
             }
             nextJump = jumpRate + Time.time;
         }
     }
 
-    public void changePoints(int points)
-    {
-
-            Text score = GameObject.Find("ScoreBoard").GetComponent<Text>();
-            int scoreboard = System.Convert.ToInt32(score.text);
-            scoreboard += points;
-            score.text = String.Format("{0,6:000000}", scoreboard);
-     
-    }
 
     public void deadFire()
     {
-        mario.GetComponent<Mario>().sound.PlayOneShot(KillEnemy, 1f);
-        Destroy(gameObject);
+        if(!scored)
+        {
+            scored = true;
+            scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 100;
+            mario.GetComponent<Mario>().sound.PlayOneShot(KillEnemy, 1f);
+            Destroy(gameObject);
+        }
     }
 
 }
