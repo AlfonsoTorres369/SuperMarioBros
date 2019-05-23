@@ -13,7 +13,6 @@ public class Block : MonoBehaviour
     private Animator animation;
     public AudioClip Appear;
     public AudioClip Bump;
-    private bool pulsado;
     //otrosonido
     private AudioSource sound;
     public float posFinal;
@@ -23,7 +22,6 @@ public class Block : MonoBehaviour
         if (tipo == " ") {
             tipo = "Normal";
         }
-        pulsado = false;
         animation = GetComponent<Animator>();
         sound = GetComponent<AudioSource>();
     }
@@ -31,20 +29,6 @@ public class Block : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        checkpulsado();
-    }
-
-    void checkpulsado()
-    {
-
-        if (Input.GetKeyDown("m") && !pulsado)
-        {
-            pulsado = true;
-        }
-        else if (Input.GetKeyDown("m") && pulsado)
-        {
-            pulsado = false;
-        }
 
     }
 
@@ -65,10 +49,9 @@ public class Block : MonoBehaviour
                 if (tipo == "Mushroom")
                 {
                     animation.SetBool("Active", false);
-                    if (!pulsado)
-                    {
-                        sound.PlayOneShot(Appear, 1f);
-                    }
+    
+                    sound.PlayOneShot(Appear, 1f);
+                    
                     seta = Instantiate(seta, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
                     seta.GetComponent<Seta>().getPosFinal(posFinal);
 
@@ -76,10 +59,10 @@ public class Block : MonoBehaviour
                 if (tipo == "Flower")
                 {
                     animation.SetBool("Active", false);
-                    if (!pulsado)
-                    {
-                        sound.PlayOneShot(Appear, 1f);
-                    }
+                    
+                    
+                    sound.PlayOneShot(Appear, 1f);
+                    
                     flor = Instantiate(flor, new Vector3(transform.position.x, transform.position.y, 1f), Quaternion.identity);
                     flor.GetComponent<Flor>().getpos(posFinal);
                 }
@@ -87,10 +70,10 @@ public class Block : MonoBehaviour
                 if (tipo == "Star")
                 {
                     animation.SetBool("Active", false);
-                    if (!pulsado)
-                    {
-                        sound.PlayOneShot(Appear, 1f);
-                    }
+                    
+                    
+                    sound.PlayOneShot(Appear, 1f);
+                    
                     star = Instantiate(star, new Vector3(transform.position.x, transform.position.y + 0.1f, 1f), Quaternion.identity);
                     Debug.Log(transform.position.y + 0.581f);
                     star.GetComponent<Star>().getpos(posFinal);
@@ -105,10 +88,10 @@ public class Block : MonoBehaviour
                         Destroy(gameObject, 0.1f);
                     }
                     else {
-                        if (!pulsado)
-                        {
-                            sound.PlayOneShot(Bump, 1f);
-                        }
+                        
+                        
+                        sound.PlayOneShot(Bump, 1f);
+                        
                     }
                 }
             }

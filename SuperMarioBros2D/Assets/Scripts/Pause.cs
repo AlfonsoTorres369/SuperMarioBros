@@ -20,14 +20,14 @@ public class Pause : MonoBehaviour
     {
         if (Input.GetKeyDown("p")) {
             if (!pulsado) {
-                camera.GetComponent<AudioSource>().Pause();
+                camera.GetComponent<AudioSource>().mute = true;
                 sound.PlayOneShot(pause, 1f);
                 mario.gameObject.GetComponent<Mario>().paused = true;
                 pulsado = true;
                 Time.timeScale = 0f;
             }
             else {
-                camera.GetComponent<AudioSource>().UnPause();
+                camera.GetComponent<AudioSource>().mute = false;
                 Time.timeScale = 1f;
                 pulsado = false;
                 mario.gameObject.GetComponent<Mario>().paused = false;

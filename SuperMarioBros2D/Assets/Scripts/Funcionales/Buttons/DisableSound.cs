@@ -9,9 +9,11 @@ public class DisableSound : MonoBehaviour
     private GameObject mario;
     public bool muteSound;
     private GameObject gameover;
+    private GameObject pauseController;
     // Start is called before the first frame update
     void Start()
     {
+        pauseController = GameObject.Find("PauseController");
         enemySound = GameObject.FindGameObjectsWithTag("Turtle");
         gameover = GameObject.Find("Score&SceneController");
         mario = GameObject.FindWithTag("Mario");
@@ -21,6 +23,7 @@ public class DisableSound : MonoBehaviour
         {
             mario.GetComponent<AudioSource>().mute = true;
             GetComponent<AudioSource>().Pause();
+            pauseController.GetComponent<AudioSource>().mute = true;
             for(int i=0; i<soundObj.Length; i++)
             {
                 soundObj[i].GetComponent<AudioSource>().mute = true;
@@ -28,7 +31,7 @@ public class DisableSound : MonoBehaviour
             for(int i=0; i<enemySound.Length; i++)
             {
                 enemySound[i].GetComponent<AudioSource>().mute = true;
-                enemySound[i].transform.GetChild(0).GetComponent<GameObject>().GetComponent<AudioSource>().mute = true;
+                enemySound[i].transform.GetChild(0).gameObject.GetComponent<AudioSource>().mute = true;
             }
         }
         //Aquí, acceder al fichero Score para ver si la última vez que se jugó estaba en silencio o no.
@@ -38,11 +41,14 @@ public class DisableSound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetBoxes();
+        GetTurtles();
+        UpdateTurtles();
         if(Input.GetKeyDown(KeyCode.M) && !muteSound)
         {
             muteSound = true;
             gameover.GetComponent<GameOver>().ReloadOptions();
-            
+            pauseController.GetComponent<AudioSource>().mute = true;
             mario.GetComponent<AudioSource>().mute = true;
             GetComponent<AudioSource>().Pause();
             for(int i=0; i<soundObj.Length; i++)
@@ -52,12 +58,13 @@ public class DisableSound : MonoBehaviour
             for(int i=0; i<enemySound.Length; i++)
             {
                 enemySound[i].GetComponent<AudioSource>().mute = true;
-                enemySound[i].transform.GetChild(0).GetComponent<GameObject>().GetComponent<AudioSource>().mute = true;
+                enemySound[i].transform.GetChild(0).gameObject.GetComponent<AudioSource>().mute = true;
             }
         }
         else if(Input.GetKeyDown(KeyCode.M) && muteSound)
         {
             muteSound = false;
+            pauseController.GetComponent<AudioSource>().mute = false;
             gameover.GetComponent<GameOver>().ReloadOptions();
             mario.GetComponent<AudioSource>().mute = false;
             GetComponent<AudioSource>().UnPause();
@@ -68,7 +75,36 @@ public class DisableSound : MonoBehaviour
             for(int i=0; i<enemySound.Length; i++)
             {
                 enemySound[i].GetComponent<AudioSource>().mute = false;
-                enemySound[i].transform.GetChild(0).GetComponent<GameObject>().GetComponent<AudioSource>().mute = false;
+                enemySound[i].transform.GetChild(0).gameObject.GetComponent<AudioSource>().mute = false;
+            }
+        }
+    }
+
+    void GetTurtles()
+    {
+        enemySound = GameObject.FindGameObjectsWithTag("Turtle"); 
+    }
+    void GetBoxes()
+    {
+        soundObj = GameObject.FindGameObjectsWithTag("Box");
+    }
+
+    void UpdateTurtles()
+    {
+        if(!muteSound)
+        {
+            for(int i=0; i<enemySound.Length; i++)
+            {
+                enemySound[i].GetComponent<AudioSource>().mute = false;
+                enemySound[i].transform.GetChild(0).gameObject.GetComponent<AudioSource>().mute = false;
+            }
+        }
+        if(muteSound)
+        {
+            for(int i=0; i<enemySound.Length; i++)
+            {
+                enemySound[i].GetComponent<AudioSource>().mute = true;
+                enemySound[i].transform.GetChild(0).gameObject.GetComponent<AudioSource>().mute = true;
             }
         }
     }

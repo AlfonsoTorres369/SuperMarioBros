@@ -89,11 +89,7 @@ public class Mario : MonoBehaviour
                 deadFell(deadPos);
             }
         }
-        if(win && transform.position.y>-1.7)
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
-        }
-        else if(win)
+        if(win && transform.position.y<=-1.6)
         {
             SceneManager.LoadScene("VictoryScene", LoadSceneMode.Single); 
         }
@@ -260,6 +256,8 @@ public class Mario : MonoBehaviour
             a.SetBool("Win", true);
             scoreboard.GetComponent<Scoreboard>().Score = scoreboard.GetComponent<Scoreboard>().Score + 400;
             scoreRec = true;
+            //r.gravityScale = 0;
+            r.velocity = new Vector3(0,0,0);
         }
     }
 
